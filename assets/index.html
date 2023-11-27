@@ -2,8 +2,33 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <script>
+      window.__setTheme = () => {
+        const preferences = api.getPreferences();
+        const theme = preferences.emulator.theme || 'purple';
+        document.documentElement.setAttribute(
+          'data-theme',
+          theme === 'system' ? 'dark' : theme
+        );
+        api.onPreferencesChanged((preferences) => {
+          const theme = preferences.emulator.theme || 'purple';
+          document.documentElement.setAttribute(
+            'data-theme',
+            theme === 'system' ? 'dark' : theme
+          );
+        });
+      };
+      __setTheme();
+    </script>
   </head>
   <body>
+    <header id="titlebar">
+      <div id="drag-region">
+        <div id="window-title">
+          <span>Settings</span>
+        </div>
+      </div>
+    </header>
     <div class="window noselect" id="window"></div>
     <script src="app.js"></script>
   </body>
