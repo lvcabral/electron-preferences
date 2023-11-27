@@ -12,7 +12,6 @@
         let theme = preferences.emulator.theme || 'purple';
         if (theme === 'system') {
           theme = __currentTheme();
-          console.log(theme);
         }
         document.documentElement.setAttribute('data-theme', theme);
       };
