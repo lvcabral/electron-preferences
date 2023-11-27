@@ -3,21 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <script>
+      window.__currentTheme = () =>
+        window.matchMedia('(prefers-color-scheme:dark)')?.matches
+          ? 'dark'
+          : 'light';
       window.__setTheme = () => {
         const preferences = api.getPreferences();
-        const theme = preferences.emulator.theme || 'purple';
-        document.documentElement.setAttribute(
-          'data-theme',
-          theme === 'system' ? 'dark' : theme
-        );
-        api.onPreferencesChanged((preferences) => {
-          const theme = preferences.emulator.theme || 'purple';
-          document.documentElement.setAttribute(
-            'data-theme',
-            theme === 'system' ? 'dark' : theme
-          );
-        });
+        let theme = preferences.emulator.theme || 'purple';
+        if (theme === 'system') {
+          theme = __currentTheme();
+          console.log(theme);
+        }
+        document.documentElement.setAttribute('data-theme', theme);
       };
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', __setTheme);
+      api.onPreferencesChanged(__setTheme);
       __setTheme();
     </script>
   </head>
