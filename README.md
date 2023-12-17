@@ -67,16 +67,16 @@ The library includes built-in support for the following field types:
 To see the library in action, clone this repository and see the demo application that is included within the `example` folder:
 
 ```sh
-$ git clone https://github.com/tkambler/electron-preferences.git
-$ cd electron-preferences && npm install
-$ npm run build
-$ npm run example
+git clone https://github.com/tkambler/electron-preferences.git
+cd electron-preferences && npm install --legacy-peer-deps
+npm run build
+npm run example
 ```
 
 ##### Other helpful scripts
 
 ```sh
-$ npm run lint
+npm run lint
 ```
 
 ## Getting Started
@@ -105,56 +105,56 @@ const { app } = require('electron');
 const path = require('path');
 
 const preferences = new ElectronPreferences({
-	config: {
-		debounce: 150, // debounce preference save settings event; 0 to disable
-	},
+ config: {
+  debounce: 150, // debounce preference save settings event; 0 to disable
+ },
 
 
-	// Override default preference BrowserWindow values
+ // Override default preference BrowserWindow values
     browserWindowOverrides: { /* ... */ },
-	
-	// Create an optional menu bar
-	menu: Menu.buildFromTemplate(/* ... */),
-	
-	// Provide a custom CSS file, relative to your appPath.
-	css: 'preference-styles.css',
+ 
+ // Create an optional menu bar
+ menu: Menu.buildFromTemplate(/* ... */),
+ 
+ // Provide a custom CSS file, relative to your appPath.
+ css: 'preference-styles.css',
 
-	// Preference file path. Where your preferences are saved (required)
-	dataStore: path.join(app.getPath("userData"), 'preferences.json'),
+ // Preference file path. Where your preferences are saved (required)
+ dataStore: path.join(app.getPath("userData"), 'preferences.json'),
 
-	// Preference default values
-	defaults: { 
-		about: {
-			name: 'Albert'
-		}
-	 },
+ // Preference default values
+ defaults: { 
+  about: {
+   name: 'Albert'
+  }
+  },
 
-	// Preference sections visible to the UI
-	sections: [
-		{
-			id: 'about',
-			label: 'About You',
-			icon: 'single-01', // See the list of available icons below
-			form: {
-				groups: [
-					{
-						label: 'About You', // optional
-						fields: [
-							{
-								label: 'Name',
-								key: 'name',
-								type: 'text',
-								help: 'What is your name?'
-							},
-							// ...
-						]
-					},
-					// ...
-				]
-			}
-		},
-		// ...
-	]
+ // Preference sections visible to the UI
+ sections: [
+  {
+   id: 'about',
+   label: 'About You',
+   icon: 'single-01', // See the list of available icons below
+   form: {
+    groups: [
+     {
+      label: 'About You', // optional
+      fields: [
+       {
+        label: 'Name',
+        key: 'name',
+        type: 'text',
+        help: 'What is your name?'
+       },
+       // ...
+      ]
+     },
+     // ...
+    ]
+   }
+  },
+  // ...
+ ]
 })
 
 // Show the preferences window on demand.
@@ -196,40 +196,46 @@ ipcRenderer.send('showPreferences', 'about');
 
 // Listen to the `preferencesUpdated` event to be notified when preferences are changed.
 ipcRenderer.on('preferencesUpdated', (e, preferences) => {
-	console.log('Preferences were updated', preferences);
+ console.log('Preferences were updated', preferences);
 });
 
 // Instruct the preferences service to update the preferences object from within the renderer.
 ipcRenderer.sendSync('setPreferences', { ... });
 ```
 
-
 ## Field Properties API
+
 All properties are string value types unless indicated.
 
 ##### `key` _(required)_
+
 Identifier for the preference to change. Preferences are referenced using a concatenation of `<section_id>.<field_key>`
 
 ##### `label` _(optional)_
+
 Title label for the preference.
 
 ##### `help` _(optional)_
+
 Help text to be displayed below the preference.
 
 ##### `hideFunction` _(optional)_
+
 A function which provides the current preferences object and returns a boolean whether or not the current field should be hidden in the preferences window.
 
-
 ### Field-specific properties
+>
 > _field_ `{ type: "..." }`
 
 ### `accelerator`
 
 ##### `allowOnlyModifier`
+
 `boolean`
 Allow modifier-only shortcuts to be set, like `Alt`
 
 ##### `modifierRequired`
+
 `boolean`
 Require a modifier (ctrl, alt, shift, meta) to be used in the accelerator shortcut.
 
@@ -244,7 +250,9 @@ Require a modifier (ctrl, alt, shift, meta) to be used in the accelerator shortc
 ### `file`
 
 ### `list`
+
 ##### `modalCloseTimeoutMS`
+
 `number`
 number in ms. Timeout before the modal dialog is closed. Default 100ms.
 
@@ -259,21 +267,25 @@ number in ms. Timeout before the modal dialog is closed. Default 100ms.
 ### `text`
 
 ### `secret`
+
 All data stored as secret will be encrypted via electron's [safeStorage](https://www.electronjs.org/docs/latest/api/safe-storage). The output buffer is saved as base64 string.
 To decrypt this string, use the `preferences.decrypt(encryptedSecretString)` function.
-⚠️ Please notice that on some OS systems, [safeStorage](https://www.electronjs.org/docs/latest/api/safe-storage) will only be available after electron's `ready` event has triggered! (https://www.electronjs.org/docs/latest/api/safe-storage#safestorageisencryptionavailable)
+⚠️ Please notice that on some OS systems, [safeStorage](https://www.electronjs.org/docs/latest/api/safe-storage) will only be available after electron's `ready` event has triggered! (<https://www.electronjs.org/docs/latest/api/safe-storage#safestorageisencryptionavailable>)
+
 ##### `modalCloseTimeoutMS`
+
 `number`
 number in ms. Timeout before the modal dialog is closed. Default 100ms.
-
 
 ## Customization
 
 ### Conditional preferences
+
 Sections, groups or fields can be conditionally hidden.
 Each one of these entities support the `hideFunction` property. This function has the current preferences as parameter and requires a boolean whether or not this entity should be hidden.
 
 #### Example
+
 ````javascript
 hideFunction: (preferences) => {
   // hide when sectionsEnabler.group2 preference is false  
@@ -298,256 +310,256 @@ The following icons come packaged with the library and can be specified when you
 
 <table style="width: 100%;">
 <thead>
-	<tr>
-		<th>Name</th>
-		<th>Icon</th>
-	</tr>
+ <tr>
+  <th>Name</th>
+  <th>Icon</th>
+ </tr>
 </thead>
 <tbody>
-	<tr>
-		<td>`archive-2`</td>
-		<td><img src="assets/svg/archive-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`archive-paper`</td>
-		<td><img src="assets/svg/archive-paper.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`award-48`</td>
-		<td><img src="assets/svg/award-48.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`badge-13`</td>
-		<td><img src="assets/svg/badge-13.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`bag-09`</td>
-		<td><img src="assets/svg/bag-09.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`barcode-qr`</td>
-		<td><img src="assets/svg/barcode-qr.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`bear-2`</td>
-		<td><img src="assets/svg/bear-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`bell-53`</td>
-		<td><img src="assets/svg/bell-53.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`bookmark-2`</td>
-		<td><img src="assets/svg/bookmark-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`brightness-6`</td>
-		<td><img src="assets/svg/brightness-6.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`briefcase-24`</td>
-		<td><img src="assets/svg/briefcase-24.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`calendar-60`</td>
-		<td><img src="assets/svg/calendar-60.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`camera-20`</td>
-		<td><img src="assets/svg/camera-20.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`cart-simple`</td>
-		<td><img src="assets/svg/cart-simple.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`chat-46`</td>
-		<td><img src="assets/svg/chat-46.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`check-circle-07`</td>
-		<td><img src="assets/svg/check-circle-07.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`cloud-26`</td>
-		<td><img src="assets/svg/cloud-26.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`compass-05`</td>
-		<td><img src="assets/svg/compass-05.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`dashboard-level`</td>
-		<td><img src="assets/svg/dashboard-level.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`diamond`</td>
-		<td><img src="assets/svg/diamond.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`edit-78`</td>
-		<td><img src="assets/svg/edit-78.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`email-84`</td>
-		<td><img src="assets/svg/email-84.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`eye-19`</td>
-		<td><img src="assets/svg/eye-19.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`favourite-31`</td>
-		<td><img src="assets/svg/favourite-31.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`flag-points-32`</td>
-		<td><img src="assets/svg/flag-points-32.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`flash-21`</td>
-		<td><img src="assets/svg/flash-21.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`folder-15`</td>
-		<td><img src="assets/svg/folder-15.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`gift-2`</td>
-		<td><img src="assets/svg/gift-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`grid-45`</td>
-		<td><img src="assets/svg/grid-45.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`handout`</td>
-		<td><img src="assets/svg/handout.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`heart-2`</td>
-		<td><img src="assets/svg/heart-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`home-52`</td>
-		<td><img src="assets/svg/home-52.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`image`</td>
-		<td><img src="assets/svg/image.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`key-25`</td>
-		<td><img src="assets/svg/key-25.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`layers-3`</td>
-		<td><img src="assets/svg/layers-3.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`like-2`</td>
-		<td><img src="assets/svg/like-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`link-72`</td>
-		<td><img src="assets/svg/link-72.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`lock-open`</td>
-		<td><img src="assets/svg/lock-open.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`lock`</td>
-		<td><img src="assets/svg/lock.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`multiple-11`</td>
-		<td><img src="assets/svg/multiple-11.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`notes`</td>
-		<td><img src="assets/svg/notes.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`pencil`</td>
-		<td><img src="assets/svg/pencil.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`phone-2`</td>
-		<td><img src="assets/svg/phone-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`preferences`</td>
-		<td><img src="assets/svg/preferences.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`send-2`</td>
-		<td><img src="assets/svg/send-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`settings-gear-63`</td>
-		<td><img src="assets/svg/settings-gear-63.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`single-01`</td>
-		<td><img src="assets/svg/single-01.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`single-folded-content`</td>
-		<td><img src="assets/svg/single-folded-content.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`skull-2`</td>
-		<td><img src="assets/svg/skull-2.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`spaceship`</td>
-		<td><img src="assets/svg/spaceship.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`square-download`</td>
-		<td><img src="assets/svg/square-download.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`square-upload`</td>
-		<td><img src="assets/svg/square-upload.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`support-16`</td>
-		<td><img src="assets/svg/support-16.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`trash-simple`</td>
-		<td><img src="assets/svg/trash-simple.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`turtle`</td>
-		<td><img src="assets/svg/turtle.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`vector`</td>
-		<td><img src="assets/svg/vector.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`video-66`</td>
-		<td><img src="assets/svg/video-66.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`wallet-43`</td>
-		<td><img src="assets/svg/wallet-43.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`widget`</td>
-		<td><img src="assets/svg/widget.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`world`</td>
-		<td><img src="assets/svg/world.svg" height="40" width="40" /></td>
-	</tr>
-	<tr>
-		<td>`zoom-2`</td>
-		<td><img src="assets/svg/zoom-2.svg" height="40" width="40" /></td>
-	</tr>
+ <tr>
+  <td>`archive-2`</td>
+  <td><img src="assets/svg/archive-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`archive-paper`</td>
+  <td><img src="assets/svg/archive-paper.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`award-48`</td>
+  <td><img src="assets/svg/award-48.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`badge-13`</td>
+  <td><img src="assets/svg/badge-13.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`bag-09`</td>
+  <td><img src="assets/svg/bag-09.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`barcode-qr`</td>
+  <td><img src="assets/svg/barcode-qr.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`bear-2`</td>
+  <td><img src="assets/svg/bear-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`bell-53`</td>
+  <td><img src="assets/svg/bell-53.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`bookmark-2`</td>
+  <td><img src="assets/svg/bookmark-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`brightness-6`</td>
+  <td><img src="assets/svg/brightness-6.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`briefcase-24`</td>
+  <td><img src="assets/svg/briefcase-24.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`calendar-60`</td>
+  <td><img src="assets/svg/calendar-60.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`camera-20`</td>
+  <td><img src="assets/svg/camera-20.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`cart-simple`</td>
+  <td><img src="assets/svg/cart-simple.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`chat-46`</td>
+  <td><img src="assets/svg/chat-46.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`check-circle-07`</td>
+  <td><img src="assets/svg/check-circle-07.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`cloud-26`</td>
+  <td><img src="assets/svg/cloud-26.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`compass-05`</td>
+  <td><img src="assets/svg/compass-05.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`dashboard-level`</td>
+  <td><img src="assets/svg/dashboard-level.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`diamond`</td>
+  <td><img src="assets/svg/diamond.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`edit-78`</td>
+  <td><img src="assets/svg/edit-78.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`email-84`</td>
+  <td><img src="assets/svg/email-84.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`eye-19`</td>
+  <td><img src="assets/svg/eye-19.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`favourite-31`</td>
+  <td><img src="assets/svg/favourite-31.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`flag-points-32`</td>
+  <td><img src="assets/svg/flag-points-32.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`flash-21`</td>
+  <td><img src="assets/svg/flash-21.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`folder-15`</td>
+  <td><img src="assets/svg/folder-15.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`gift-2`</td>
+  <td><img src="assets/svg/gift-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`grid-45`</td>
+  <td><img src="assets/svg/grid-45.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`handout`</td>
+  <td><img src="assets/svg/handout.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`heart-2`</td>
+  <td><img src="assets/svg/heart-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`home-52`</td>
+  <td><img src="assets/svg/home-52.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`image`</td>
+  <td><img src="assets/svg/image.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`key-25`</td>
+  <td><img src="assets/svg/key-25.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`layers-3`</td>
+  <td><img src="assets/svg/layers-3.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`like-2`</td>
+  <td><img src="assets/svg/like-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`link-72`</td>
+  <td><img src="assets/svg/link-72.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`lock-open`</td>
+  <td><img src="assets/svg/lock-open.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`lock`</td>
+  <td><img src="assets/svg/lock.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`multiple-11`</td>
+  <td><img src="assets/svg/multiple-11.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`notes`</td>
+  <td><img src="assets/svg/notes.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`pencil`</td>
+  <td><img src="assets/svg/pencil.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`phone-2`</td>
+  <td><img src="assets/svg/phone-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`preferences`</td>
+  <td><img src="assets/svg/preferences.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`send-2`</td>
+  <td><img src="assets/svg/send-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`settings-gear-63`</td>
+  <td><img src="assets/svg/settings-gear-63.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`single-01`</td>
+  <td><img src="assets/svg/single-01.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`single-folded-content`</td>
+  <td><img src="assets/svg/single-folded-content.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`skull-2`</td>
+  <td><img src="assets/svg/skull-2.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`spaceship`</td>
+  <td><img src="assets/svg/spaceship.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`square-download`</td>
+  <td><img src="assets/svg/square-download.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`square-upload`</td>
+  <td><img src="assets/svg/square-upload.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`support-16`</td>
+  <td><img src="assets/svg/support-16.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`trash-simple`</td>
+  <td><img src="assets/svg/trash-simple.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`turtle`</td>
+  <td><img src="assets/svg/turtle.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`vector`</td>
+  <td><img src="assets/svg/vector.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`video-66`</td>
+  <td><img src="assets/svg/video-66.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`wallet-43`</td>
+  <td><img src="assets/svg/wallet-43.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`widget`</td>
+  <td><img src="assets/svg/widget.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`world`</td>
+  <td><img src="assets/svg/world.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`zoom-2`</td>
+  <td><img src="assets/svg/zoom-2.svg" height="40" width="40" /></td>
+ </tr>
 </tbody>
 </table>
 
