@@ -22,7 +22,7 @@
     api.onPreferencesUpdated(__setTheme);
 
     document.addEventListener("DOMContentLoaded", (event) => {
-      if (api.processPlatform() !== "darwin") {
+      if (api.processPlatform() === "darwin") {
         document.getElementById('window-controls').style.visibility = "hidden";
       } else {
         document.getElementById('close-button').addEventListener("click", event => {
