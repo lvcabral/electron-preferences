@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset='UTF-8' />
   <script>
     window.__currentTheme = () =>
       window.matchMedia('(prefers-color-scheme:dark)')?.matches
@@ -15,17 +15,19 @@
         theme = __currentTheme();
       }
       document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('close-button-dark').style.display = theme === 'light' ? 'none' : '';
+      document.getElementById('close-button-light').style.display = theme === 'light' ? '' : 'none';
     };
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', __setTheme);
     api.onPreferencesUpdated(__setTheme);
 
-    document.addEventListener("DOMContentLoaded", (event) => {
-      if (api.processPlatform() === "darwin") {
-        document.getElementById('window-controls').style.visibility = "hidden";
+    document.addEventListener('DOMContentLoaded', (event) => {
+      if (api.processPlatform() === 'darwin') {
+        document.getElementById('window-controls').style.visibility = 'hidden';
       } else {
-        document.getElementById('close-button').addEventListener("click", event => {
+        document.getElementById('close-button').addEventListener('click', event => {
           api.closePreferences();
         });
       }
@@ -35,22 +37,24 @@
 </head>
 
 <body>
-  <header id="titlebar">
-    <div id="drag-region">
-      <div id="window-title">
+  <header id='titlebar'>
+    <div id='drag-region'>
+      <div id='window-title'>
         <span>Settings</span>
       </div>
-      <div id="window-controls">
-        <div class="button" id="close-button">
-          <img class="icon"
-            srcset="icons/close-w-10.png 1x, icons/close-w-12.png 1.25x, icons/close-w-15.png 1.5x, icons/close-w-15.png 1.75x, icons/close-w-20.png 2x, icons/close-w-20.png 2.25x, icons/close-w-24.png 2.5x, icons/close-w-30.png 3x, icons/close-w-30.png 3.5x"
-            draggable="false" />
+      <div id='window-controls'>
+        <div class='button' id='close-button'>
+          <img class='icon' id='close-button-dark'
+            srcset='icons/close-w-10.png 1x, icons/close-w-12.png 1.25x, icons/close-w-15.png 1.5x, icons/close-w-15.png 1.75x, icons/close-w-20.png 2x, icons/close-w-20.png 2.25x, icons/close-w-24.png 2.5x, icons/close-w-30.png 3x, icons/close-w-30.png 3.5x'
+            draggable='false' /><img class='icon' id='close-button-light' style='display: none;'
+            srcset='icons/close-k-10.png 1x, icons/close-k-12.png 1.25x, icons/close-k-15.png 1.5x, icons/close-k-15.png 1.75x, icons/close-k-20.png 2x, icons/close-k-20.png 2.25x, icons/close-k-24.png 2.5x, icons/close-k-30.png 3x, icons/close-k-30.png 3.5x'
+            draggable='false' />
         </div>
       </div>
     </div>
   </header>
-  <div class="window noselect" id="window"></div>
-  <script src="app.js"></script>
+  <div class='window noselect' id='window'></div>
+  <script src='app.js'></script>
 </body>
 
 </html>
