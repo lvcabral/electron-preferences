@@ -22,25 +22,25 @@ bt2.addEventListener('click', () => {
 });
 
 bt3.addEventListener('click', () => {
-				
+
 	api.resetToDefaults();
 
 });
 
 bt4.addEventListener('click', () => {
-				
-	api.showPreferences("notes");
+
+	api.showPreferences('notes');
 
 });
 
 bt5.addEventListener('click', () => {
-  
-  const preferences = api.getPreferences();
-  
-  const encrypted = preferences.account.password;
+
+	const preferences = api.getPreferences();
+
+	const encrypted = preferences.account.password;
 	const decrypted = api.decrypt(encrypted);
-  
-  alert(`Encrypted password: ${encrypted}\nDecrypted password: ${decrypted}`);
+
+	alert(`Encrypted password: ${encrypted}\nDecrypted password: ${decrypted}`);
 
 });
 

@@ -10,7 +10,7 @@
         : 'light';
     window.__setTheme = () => {
       const preferences = api.getPreferences();
-      let theme = preferences.emulator.theme || 'purple';
+      let theme = preferences.simulator.theme || 'purple';
       if (theme === 'system') {
         theme = __currentTheme();
       }

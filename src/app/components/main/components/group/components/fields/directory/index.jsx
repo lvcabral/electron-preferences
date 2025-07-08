@@ -23,8 +23,8 @@ class DirectoryField extends React.Component {
 
 		return (
 			<div className={`field field-directory key-${this.field.key}`}>
-				<div className="field-label" aria-label={ label }>{ label }</div>
-				<div className="value" onClick={ this.choose }>
+				<div className='field-label' aria-label={ label }>{ label }</div>
+				<div className='value' onClick={ this.choose }>
 					{multiSelections ? 'Folders' : 'Folder'}:&nbsp;
 					{
 						value
@@ -36,10 +36,10 @@ class DirectoryField extends React.Component {
 							: 'None'
 					}
 				</div>
-				<button className="bt" onClick={ this.choose } aria-label={ btLabel }>
+				<button className='bt' onClick={ this.choose } aria-label={ btLabel }>
 					{ btLabel }
 				</button>
-				{ help && <span className="help">{ help }</span> }
+				{ help && <span className='help'>{ help }</span> }
 			</div>
 		);
 

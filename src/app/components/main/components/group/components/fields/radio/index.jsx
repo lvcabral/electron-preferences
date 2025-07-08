@@ -15,10 +15,10 @@ class RadioField extends React.Component {
 			const id = `${fieldID}_${idx}`;
 
 			return (
-				<label htmlFor={ id } className="radio-option" key={ idx }>
+				<label htmlFor={ id } className='radio-option' key={ idx }>
 					{ option.label }
-					<input type="radio" id={ id } onChange={ this.onChange.bind(this) } checked={ option.value === this.value } name={ fieldID } aria-label={ option.label } />
-					<span className="check-circle" />
+					<input type='radio' id={ id } onChange={ this.onChange.bind(this) } checked={ option.value === this.value } name={ fieldID } aria-label={ option.label } />
+					<span className='check-circle' />
 				</label>
 			);
 
@@ -26,9 +26,9 @@ class RadioField extends React.Component {
 
 		return (
 			<div className={`field field-radio key-${this.field.key}`}>
-				<div className="field-label">{ this.label }</div>
+				<div className='field-label'>{ this.label }</div>
 				{ options }
-				{ this.help && <span className="help">{ this.help }</span> }
+				{ this.help && <span className='help'>{ this.help }</span> }
 			</div>
 		);
 

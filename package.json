@@ -1,11 +1,11 @@
 {
-  "name": "electron-preferences",
-  "version": "2.8.2",
+  "name": "@lvcabral/electron-preferences",
+  "version": "2.8.77",
   "description": "A simple, consistent interface for managing user preferences within an Electron application.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tkambler/electron-preferences.git"
+    "url": "https://github.com/lvcabral/electron-preferences.git"
   },
   "keywords": [
     "electron",
@@ -23,9 +23,13 @@
     "prepare": "npm run build",
     "build": "rimraf ./build && webpack",
     "build:dev": "rimraf ./build && webpack --mode development",
-    "build:example": "npm run build && npm run example"
+    "build:example": "npm run build && npm run example",
+    "release": "npm publish --tag latest --access public"
   },
   "author": "Tim Ambler <tkambler@gmail.com>",
+  "contributors": [
+    "Marcelo Lv Cabral <marcelo@lvcabral.com>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.19.6",

@@ -4,24 +4,19 @@
 
 <img src="misc/demo.png" />
 
-- [Electron Preferences](#electron-preferences)
-  - [Introduction](#introduction)
-  - [Features](#features)
-    - [Field Types](#field-types)
-  - [Demo](#demo)
-  - [Getting Started](#getting-started)
-  - [From the Main process](#from-the-main-process)
-  - [From the Renderer process](#from-the-renderer-process)
-  - [Customization](#customization)
-  - [Icons](#icons)
-  - [Example Code](#example-preferences-code)
-
 ## Introduction
 
 This package provides [Electron](https://electronjs.org/) developers with a simple, consistent interface for managing user preferences. It includes two primary components:
 
 - A simple key/value store API for interacting with the service.
 - A GUI interface allowing users to manage preference values in the frontend of your application.
+
+### Fork Information
+
+This is a fork of the original [electron-preferences](https://github.com/tkambler/electron-preferences) project, with additional features and improvements focused on the [BrightScript Simulator project](https://github.com/lvcabral/brs-desktop). The changes include:
+
+- Added additional icons.
+- Support for themes (dark/light/purple).
 
 ## Features
 
