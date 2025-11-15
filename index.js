@@ -2,7 +2,8 @@
 
 const electron = require('electron');
 
-const { app, BrowserWindow, ipcMain, webContents, dialog, safeStorage } = electron;
+const { app, BrowserWindow, ipcMain, webContents, dialog, safeStorage }
+  = electron;
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
@@ -33,14 +34,18 @@ class ElectronPreferences extends EventEmitter2 {
 		// Legacy: Set config values
 		if (options.css && !options.config.css) {
 
-			console.warn('DEPRECATED: css option has been deprecated and will be removed in a future version. It now lives under config.css.');
+			console.warn(
+				'DEPRECATED: css option has been deprecated and will be removed in a future version. It now lives under config.css.',
+			);
 			this.options.config.css = options.css;
 
 		}
 
 		if (options.dataStore && !options.config.dataStore) {
 
-			console.warn('DEPRECATED: dataStore option has been deprecated and will be removed in a future version. It now lives under config.dataStore.');
+			console.warn(
+				'DEPRECATED: dataStore option has been deprecated and will be removed in a future version. It now lives under config.dataStore.',
+			);
 			this.options.config.dataStore = options.dataStore;
 
 		}
@@ -91,10 +96,13 @@ class ElectronPreferences extends EventEmitter2 {
 
 				// PrefDefault is a group key
 
-				if ((prefDefault in this.preferences)) {
+				if (prefDefault in this.preferences) {
 
 					// Merge preferences with defaults (in case new preference was added, set it's default)
-					this.preferences[prefDefault] = { ...this.defaults[prefDefault], ...this.preferences[prefDefault] };
+					this.preferences[prefDefault] = {
+						...this.defaults[prefDefault],
+						...this.preferences[prefDefault],
+					};
 
 				} else {
 
@@ -196,7 +204,9 @@ class ElectronPreferences extends EventEmitter2 {
 
 			if (!safeStorage.isEncryptionAvailable()) {
 
-				console.warn('Cannot encrypt secret as electron\'s safeStorage isn\'t available');
+				console.warn(
+					'Cannot encrypt secret as electron\'s safeStorage isn\'t available',
+				);
 				event.returnValue = '';
 
 				return;
@@ -211,7 +221,9 @@ class ElectronPreferences extends EventEmitter2 {
 
 			if (!safeStorage.isEncryptionAvailable()) {
 
-				console.warn('Cannot decrypt encrypted secret as electron\'s safeStorage isn\'t available');
+				console.warn(
+					'Cannot decrypt encrypted secret as electron\'s safeStorage isn\'t available',
+				);
 				event.returnValue = '';
 
 				return;
@@ -318,6 +330,21 @@ class ElectronPreferences extends EventEmitter2 {
 
 	}
 
+	broadcastSections() {
+
+		if (!this.prefsWindow || this.prefsWindow.isDestroyed()) {
+
+			return;
+
+		}
+
+		this.prefsWindow.webContents.send(
+			'sectionsUpdated',
+			jsonSerializer(this.options.sections),
+		);
+
+	}
+
 	getBrowserWindowOptions() {
 
 		let browserWindowOptions = {
@@ -349,12 +376,19 @@ class ElectronPreferences extends EventEmitter2 {
 		// User provided `browserWindow`, we load those
 		if (this.options.browserWindowOverrides) {
 
-			browserWindowOptions = Object.assign(browserWindowOptions, this.options.browserWindowOverrides);
+			browserWindowOptions = Object.assign(
+				browserWindowOptions,
+				this.options.browserWindowOverrides,
+			);
 
 		}
 
 		// Object.assign is shallow, let's process browserWindow.webPreferences
-		browserWindowOptions.webPreferences = Object.assign(defaultWebPreferences, browserWindowOptions.webPreferences, unOverridableWebPreferences);
+		browserWindowOptions.webPreferences = Object.assign(
+			defaultWebPreferences,
+			browserWindowOptions.webPreferences,
+			unOverridableWebPreferences,
+		);
 
 		return browserWindowOptions;
 
@@ -362,12 +396,14 @@ class ElectronPreferences extends EventEmitter2 {
 
 	show(section) {
 
-		if (typeof (section) !== 'undefined') {
+		if (typeof section !== 'undefined') {
 
 			const sectionIds = this.options.sections.map(section => section.id);
 			if (!sectionIds.includes(section)) {
 
-				console.warn(`Could not find a section with id '${section}'. Ignoring the parameter`);
+				console.warn(
+					`Could not find a section with id '${section}'. Ignoring the parameter`,
+				);
 				section = undefined;
 
 			}
@@ -409,11 +445,13 @@ class ElectronPreferences extends EventEmitter2 {
 
 		}
 
-		this.prefsWindow.loadURL(url.format({
-			pathname: path.join(__dirname, 'build/index.html'),
-			protocol: 'file:',
-			slashes: true,
-		}));
+		this.prefsWindow.loadURL(
+			url.format({
+				pathname: path.join(__dirname, 'build/index.html'),
+				protocol: 'file:',
+				slashes: true,
+			}),
+		);
 
 		this.prefsWindow.once('ready-to-show', () => {
 
@@ -428,8 +466,7 @@ class ElectronPreferences extends EventEmitter2 {
 			const cssFile = this.config.css;
 			if (cssFile) {
 
-				const file = path.join(app.getAppPath(), cssFile)
-					.replace(/\\/g, '/'); // Make sure it also works in Windows
+				const file = path.join(app.getAppPath(), cssFile).replace(/\\/g, '/'); // Make sure it also works in Windows
 
 				try {
 
@@ -465,7 +502,9 @@ class ElectronPreferences extends EventEmitter2 {
 
 				} catch (error) {
 
-					console.error(`Could not open the requested section ${section}: ${error}`);
+					console.error(
+						`Could not open the requested section ${section}: ${error}`,
+					);
 
 				}
 
@@ -514,7 +553,9 @@ class ElectronPreferences extends EventEmitter2 {
 
 		if (!safeStorage.isEncryptionAvailable()) {
 
-			throw new Error('Cannot decrypt as electron\'s safeStorage isn\'t available yet');
+			throw new Error(
+				'Cannot decrypt as electron\'s safeStorage isn\'t available yet',
+			);
 
 		}
 

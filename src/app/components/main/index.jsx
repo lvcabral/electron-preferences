@@ -28,6 +28,13 @@ class Main extends React.Component {
 	render() {
 
 		const { preferences, section, onFieldChange } = this;
+		if (!section) {
+
+			return (
+				<div className='main' role='tabpanel' ref={ this.mainRef } />
+			);
+
+		}
 
 		const groups = this.form.groups.map((group, idx) => (
 			<HideableComponent field={ group } allPreferences={ preferences }>
@@ -77,7 +84,7 @@ class Main extends React.Component {
 
 		return _.find(this.sections, {
 			id: this.activeSection,
-		});
+		}) || this.sections[0];
 
 	}
 

@@ -17,6 +17,7 @@ This is a fork of the original [electron-preferences](https://github.com/tkamble
 
 - Added additional icons.
 - Support for themes (dark/light/purple).
+- Refresh section contents at runtime without reopening the preferences window
 
 ## Features
 
@@ -33,7 +34,7 @@ This is a fork of the original [electron-preferences](https://github.com/tkamble
 - Customize the layout of the preference manager using JSON
 - Ability to conditionally show/hide different preferences
 
-#### Field Types
+### Field Types
 
 The library includes built-in support for the following field types:
 
@@ -68,7 +69,7 @@ npm run build
 npm run example
 ```
 
-##### Other helpful scripts
+### Other helpful scripts
 
 ```sh
 npm run lint
@@ -176,6 +177,23 @@ preferences.on('click', (key) => {
 });
 ```
 
+### Updating sections at runtime
+
+Some applications need to update dropdown options or other layout details while the preferences window is already open. The preferences instance keeps the original section definition in `preferences.options.sections`. After mutating that structure, call `preferences.broadcastSections()` to notify the renderer so it can refresh in place (no need to close and reopen the window).
+
+```js
+const peerRokuSection = preferences.options.sections.find(section => section.id === 'peerRoku');
+if (peerRokuSection) {
+  const ipField = peerRokuSection.form.groups
+    .flatMap(group => group.fields)
+    .find(field => field.key === 'ip');
+  ipField.options = buildDiscoveredDeviceOptions();
+  preferences.broadcastSections();
+}
+```
+
+The bundled renderer automatically re-renders when `broadcastSections()` is invoked. This also works while the window is closed; the next call to `preferences.show()` will display the updated layout.
+
 ### From the Renderer process
 
 ```js
@@ -246,7 +264,7 @@ Require a modifier (ctrl, alt, shift, meta) to be used in the accelerator shortc
 
 ### `list`
 
-##### `modalCloseTimeoutMS`
+#### `modalCloseTimeoutMS`
 
 `number`
 number in ms. Timeout before the modal dialog is closed. Default 100ms.
@@ -267,7 +285,7 @@ All data stored as secret will be encrypted via electron's [safeStorage](https:/
 To decrypt this string, use the `preferences.decrypt(encryptedSecretString)` function.
 ⚠️ Please notice that on some OS systems, [safeStorage](https://www.electronjs.org/docs/latest/api/safe-storage) will only be available after electron's `ready` event has triggered! (<https://www.electronjs.org/docs/latest/api/safe-storage#safestorageisencryptionavailable>)
 
-##### `modalCloseTimeoutMS`
+#### `modalCloseTimeoutMS`
 
 `number`
 number in ms. Timeout before the modal dialog is closed. Default 100ms.
