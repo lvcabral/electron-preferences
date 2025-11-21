@@ -5,24 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-### Fixed
-
-- Fix README example's datastore in case of linux (#208)
+## [2.9.2] - 2024-11-21
 
 ### Added
 
-- Debounce option added. By default debouce is 140ms, change to 0 to disable.
-- Added `allowOnlyModifier` property to the accelerator input to allow shortcuts like `Alt` or `Shift`
-- type 'number' instead of having to declare type 'text' with 'inputType = number' (#168)
-- Maximum and minimum list size via `min` and `max` list properties (#164)
-- `resetToDefaults` endpoint to the preferences object which removes any non-default properties and set all default properties to their default values (#97)
+- Added support for custom SVG icons via file path
 
 ### Changed
 
-- bump dependencies to their latest version
-- Added new event `onPreferencesUpdated` in `preload.js` (#213)
+- Updated README with complete list of builtin icons
+- Improved custom SVG icon example in README
+
+### Removed
+
+- Removed 3 Roku specific SVG icons: `roku-box`, `roku-logo`, `roku-remote`
+
+## [2.9.0] - 2025-11-15
+
+### Added
+
+- Added support for dynamically change the content of a preference window.
+
+## [2.8.70] - 2025-07-08
+
+### Added
+
+- Added support for themes
+- Added 7 new builtin icons: `app-terminal`, `closed-caption`, `speaker`, `tv-screen`, `roku-box`, `roku-logo`, `roku-remote`
 
 ## [2.6.0] - 2022-03-29
 

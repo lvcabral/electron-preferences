@@ -15,7 +15,7 @@ This package provides [Electron](https://electronjs.org/) developers with a simp
 
 This is a fork of the original [electron-preferences](https://github.com/tkambler/electron-preferences) project, with additional features and improvements focused on the [BrightScript Simulator project](https://github.com/lvcabral/brs-desktop). The changes include:
 
-- Added additional icons.
+- Added additional icons and support for custom icons.
 - Support for themes (dark/light/purple).
 - Refresh section contents at runtime without reopening the preferences window
 
@@ -334,7 +334,7 @@ sections: [
   {
     id: 'editor',
     label: 'Editor',
-    icon: 'assets/custom-icon.svg', // Custom SVG file path
+    icon: __dirname + '/assets/custom-icon.svg', // Custom SVG file path
     form: { /* ... */ }
   }
 ]
@@ -352,6 +352,10 @@ The path should be relative to your application's build output directory where t
  </tr>
 </thead>
 <tbody>
+ <tr>
+  <td>`app-terminal`</td>
+  <td><img src="assets/svg/app-terminal.svg" height="40" width="40" /></td>
+ </tr>
  <tr>
   <td>`archive-2`</td>
   <td><img src="assets/svg/archive-2.svg" height="40" width="40" /></td>
@@ -389,12 +393,12 @@ The path should be relative to your application's build output directory where t
   <td><img src="assets/svg/bookmark-2.svg" height="40" width="40" /></td>
  </tr>
  <tr>
-  <td>`brightness-6`</td>
-  <td><img src="assets/svg/brightness-6.svg" height="40" width="40" /></td>
- </tr>
- <tr>
   <td>`briefcase-24`</td>
   <td><img src="assets/svg/briefcase-24.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`brightness-6`</td>
+  <td><img src="assets/svg/brightness-6.svg" height="40" width="40" /></td>
  </tr>
  <tr>
   <td>`calendar-60`</td>
@@ -415,6 +419,10 @@ The path should be relative to your application's build output directory where t
  <tr>
   <td>`check-circle-07`</td>
   <td><img src="assets/svg/check-circle-07.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`closed-caption`</td>
+  <td><img src="assets/svg/closed-caption.svg" height="40" width="40" /></td>
  </tr>
  <tr>
   <td>`cloud-26`</td>
@@ -553,6 +561,10 @@ The path should be relative to your application's build output directory where t
   <td><img src="assets/svg/spaceship.svg" height="40" width="40" /></td>
  </tr>
  <tr>
+  <td>`speaker`</td>
+  <td><img src="assets/svg/speaker.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
   <td>`square-download`</td>
   <td><img src="assets/svg/square-download.svg" height="40" width="40" /></td>
  </tr>
@@ -571,6 +583,10 @@ The path should be relative to your application's build output directory where t
  <tr>
   <td>`turtle`</td>
   <td><img src="assets/svg/turtle.svg" height="40" width="40" /></td>
+ </tr>
+ <tr>
+  <td>`tv-screen`</td>
+  <td><img src="assets/svg/tv-screen.svg" height="40" width="40" /></td>
  </tr>
  <tr>
   <td>`vector`</td>
