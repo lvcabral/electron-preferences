@@ -321,6 +321,29 @@ Still not matching your layout? You can easily customize the complete look by in
 
 The following icons come packaged with the library and can be specified when you define the layout of your preferences window.
 
+#### Using Custom SVG Icons
+
+In addition to the built-in icons, you can also use custom SVG files by providing a file path instead of an icon name. The library automatically detects custom icons when the icon value:
+- Contains `.svg` in the path
+- Starts with `./` (relative path)
+- Starts with `/` (absolute path)
+
+Example:
+```javascript
+sections: [
+  {
+    id: 'editor',
+    label: 'Editor',
+    icon: 'assets/custom-icon.svg', // Custom SVG file path
+    form: { /* ... */ }
+  }
+]
+```
+
+The path should be relative to your application's build output directory where the preferences window HTML is loaded from.
+
+#### Built-in Icons
+
 <table style="width: 100%;">
 <thead>
  <tr>
