@@ -21,7 +21,6 @@
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', __setTheme);
-    api.onPreferencesUpdated(__setTheme);
 
     document.addEventListener('DOMContentLoaded', (event) => {
       if (api.processPlatform() === 'darwin') {

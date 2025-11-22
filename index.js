@@ -327,6 +327,12 @@ class ElectronPreferences extends EventEmitter2 {
 			wc.send('preferencesUpdated', this.preferences);
 
 		}
+		if (!this.prefsWindow || this.prefsWindow.isDestroyed()) {
+
+			return;
+
+		}
+		this.prefsWindow.webContents.executeJavaScript(`window.__setTheme()`);
 
 	}
 
