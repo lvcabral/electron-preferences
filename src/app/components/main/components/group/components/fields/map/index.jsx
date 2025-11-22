@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
 
 const MapField = ({ field, value, onChange }) => {
   const [newKey, setNewKey] = React.useState('');
@@ -74,7 +73,6 @@ const MapField = ({ field, value, onChange }) => {
         </div>
         <div className="ep-map-input-container">
           <div className="ep-map-input-group">
-            <label className="ep-map-input-label">{keyLabel}</label>
             <input
               className="ep-map-input"
               type="text"
@@ -86,7 +84,6 @@ const MapField = ({ field, value, onChange }) => {
             />
           </div>
           <div className="ep-map-input-group">
-            <label className="ep-map-input-label">{valueLabel}</label>
             <input
               className="ep-map-input"
               type="text"

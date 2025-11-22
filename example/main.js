@@ -49,8 +49,6 @@ function createWindow() {
 		slashes: true,
 	}));
 
-	// MainWindow.webContents.openDevTools();
-
 	mainWindow.on('closed', () => {
 
 		mainWindow = null;

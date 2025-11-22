@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.5] - 2024-11-22
+
+### Changed
+
+- DevTools now opens in detached mode for better debugging experience
+- Improved map field UI by removing redundant input labels (now uses placeholders only)
+- Code formatting and whitespace improvements in map field styles
+
+### Fixed
+
+- Fixed map field not using theme colors by moving styles to global stylesheet
+
 ## [2.9.4] - 2024-11-22
 
 ### Added

@@ -316,7 +316,7 @@ class ElectronPreferences extends EventEmitter2 {
       this.prefsWindow.focus();
 
       if (this.options.debug) {
-        this.prefsWindow.webContents.openDevTools();
+        this.prefsWindow.webContents.openDevTools({ mode: 'detach' });
       }
 
       if (section) {
@@ -391,7 +391,7 @@ class ElectronPreferences extends EventEmitter2 {
     });
 
     if (this.options.debug) {
-      this.prefsWindow.webContents.openDevTools();
+      this.prefsWindow.webContents.openDevTools({ mode: 'detach' });
     }
 
     return this.prefsWindow;

@@ -9,7 +9,7 @@
     overflow-y: auto;
     margin-bottom: 15px;
   }
-  
+
   .ep-map-empty {
     padding: 20px;
     text-align: center;
@@ -17,13 +17,13 @@
     font-style: italic;
     font-size: 14px;
   }
-  
+
   .ep-map-list {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  
+
   .ep-map-item {
     display: flex;
     align-items: center;
@@ -32,41 +32,41 @@
     border-bottom: 1px solid #e0e0e0;
     font-size: 14px;
     transition: background-color 0.2s ease;
-    
+
     &:last-child {
       border-bottom: none;
     }
-    
+
     &:hover {
       background-color: #f5f5f5;
-      
+
       .ep-map-item-delete {
         opacity: 1;
       }
     }
   }
-  
+
   .ep-map-item-content {
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  
+
   .ep-map-item-key {
     font-weight: 600;
     color: #333;
   }
-  
+
   .ep-map-item-separator {
     margin: 0 8px;
     color: #999;
   }
-  
+
   .ep-map-item-value {
     color: #666;
   }
-  
+
   .ep-map-item-delete {
     flex-shrink: 0;
     width: 24px;
@@ -81,37 +81,27 @@
     transition: all 0.2s ease;
     padding: 0;
     margin-left: 8px;
-    
+
     &:hover {
       color: #ff0000;
       opacity: 1;
     }
-    
+
     &:active {
       transform: scale(0.9);
     }
   }
-  
+
   .ep-map-input-container {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    align-items: flex-end;
-    margin-top: 10px;
+    align-items: center;
   }
-  
+
   .ep-map-input-group {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    
-    .ep-map-input-label {
-      display: block;
-      font-weight: bold;
-      font-size: 12px;
-      margin-bottom: 5px;
-    }
-    
+
     .ep-map-input {
       display: block;
       width: 100%;
@@ -130,7 +120,7 @@
       }
     }
   }
-  
+
   .ep-map-add-button {
     cursor: pointer;
     border-radius: 8px;
@@ -141,12 +131,12 @@
     font-size: 14px;
     font-weight: bold;
     flex-shrink: 0;
-    
+
     &:active {
       background-color: #0066cc;
       border-color: #0066cc;
     }
-    
+
     &:disabled {
       background-color: #666;
       border-color: #666;
@@ -162,60 +152,56 @@
       background-color: #191919;
       border-color: #131313;
     }
-    
+
     .ep-map-empty {
       color: #666;
     }
-    
+
     .ep-map-item {
       border-bottom-color: #2a2a2a;
-      
+
       &:hover {
         background-color: #252525;
       }
     }
-    
+
     .ep-map-item-key {
       color: #e4e4e4;
     }
-    
+
     .ep-map-item-separator {
       color: #666;
     }
-    
+
     .ep-map-item-value {
       color: #aaa;
     }
-    
+
     .ep-map-item-delete {
       color: #666;
-      
+
       &:hover {
         color: #ff4444;
       }
     }
-    
+
     .ep-map-input-group {
       .ep-map-input {
         color: #e4e4e4;
         background-color: #191919;
         border: 1px solid #131313;
       }
-
-      .ep-map-input-label {
-        color: white;
-      }
     }
-    
+
     .ep-map-add-button {
       background-color: #0084ff;
       border-color: #0084ff;
-      
+
       &:active {
         background-color: #0066cc;
         border-color: #0066cc;
       }
-      
+
       &:disabled {
         background-color: #444;
         border-color: #444;
