@@ -50,6 +50,7 @@ The library includes built-in support for the following field types:
 | `accelerator`     | Keyboard shortcut input                                                      |
 | `color`           | Color picker input using simonwep/pickr                                      |
 | `list`            | Ordered list with create/read/update/delete functionality                    |
+| `map`             | Key-value pair mapping with add/delete functionality                         |
 | `button`          | An IPC button to pass simple click events back to the main process           |
 | `message`         | Read-only HTML panel for displaying information                              |
 | `secret`          | Secret field. Value is stored encrypted. Decrypt via `preferences.decrypt()` |
@@ -268,6 +269,30 @@ Require a modifier (ctrl, alt, shift, meta) to be used in the accelerator shortc
 
 `number`
 number in ms. Timeout before the modal dialog is closed. Default 100ms.
+
+### `map`
+
+Manages key-value string pairs with a list display at the top showing current entries, and two text input fields at the bottom for adding new entries.
+
+#### `keyLabel`
+
+`string`
+Label for the key input field. Default 'Key'.
+
+#### `valueLabel`
+
+`string`
+Label for the value input field. Default 'Value'.
+
+#### `addButtonLabel`
+
+`string`
+Label for the add button. Default 'Add'.
+
+#### `style`
+
+`object`
+CSS styles to apply to the list element.
 
 ### `message`
 

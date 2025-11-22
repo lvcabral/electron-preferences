@@ -58,6 +58,8 @@ const FieldType = ({ field, value, onChange, preferences, allPreferences }) => {
 };
 ```
 
+**Available field types**: `text`, `number`, `dropdown`, `radio`, `checkbox`, `slider`, `file`, `directory`, `accelerator`, `color`, `list`, `map`, `button`, `message`, `secret`
+
 ### Conditional Visibility Pattern
 
 **`hideFunction`** can be applied to sections, groups, or fields:

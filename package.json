@@ -1,6 +1,6 @@
 {
   "name": "@lvcabral/electron-preferences",
-  "version": "2.9.3",
+  "version": "2.9.4",
   "description": "A simple, consistent interface for managing user preferences within an Electron application.",
   "main": "index.js",
   "repository": {

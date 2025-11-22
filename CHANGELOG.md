@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.4] - 2024-11-22
+
+### Added
+
+- Added new `map` field type for managing key-value string pairs
+  - Inline delete buttons that appear on hover for each entry
+  - Support for custom labels via `keyLabel`, `valueLabel`, and `addButtonLabel` properties
+  - Empty state message when no entries exist
+  - Full dark mode support with smooth transitions
+
+### Fixed
+
+- Fixed index-dependent group IDs that would change when sections were reordered
+  - Group IDs now use stable identifiers based on section ID: `group-{sectionId}-{groupIdx}`
+  - Sections can now be safely inserted anywhere in the array without affecting existing group IDs
+  - Maintains backward compatibility with CSS class names
+
 ## [2.9.3] - 2024-11-22
 
 ### Fixed

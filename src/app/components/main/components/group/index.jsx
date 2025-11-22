@@ -15,104 +15,96 @@ import ListField from './components/fields/list';
 import FileField from './components/fields/file';
 import ButtonField from './components/fields/button';
 import SecretField from './components/fields/secret';
+import MapField from './components/fields/map';
 import HideableComponent from '../../../generic/hideable';
 
 const fieldMap = {
-	directory: DirectoryField,
-	text: TextField,
-	number: TextField,
-	message: MessageField,
-	dropdown: DropdownField,
-	checkbox: CheckboxField,
-	radio: RadioField,
-	slider: SliderField,
-	accelerator: AcceleratorField,
-	color: ColorField,
-	list: ListField,
-	file: FileField,
-	button: ButtonField,
-	secret: SecretField,
+  directory: DirectoryField,
+  text: TextField,
+  number: TextField,
+  message: MessageField,
+  dropdown: DropdownField,
+  checkbox: CheckboxField,
+  radio: RadioField,
+  slider: SliderField,
+  accelerator: AcceleratorField,
+  color: ColorField,
+  list: ListField,
+  file: FileField,
+  button: ButtonField,
+  secret: SecretField,
+  map: MapField,
 };
 
 class Group extends React.Component {
+  render() {
+    const { allPreferences } = this;
 
-	render() {
+    const label = this.label ? (
+      <div className="group-label">{this.label}</div>
+    ) : null;
 
-		const { allPreferences } = this;
+    const fields = this.fields
+      .map((field, idx) => {
+        const Field = fieldMap[field.type];
+        if (!Field) {
+          return;
+        }
 
-		const label = this.label ? <div className='group-label'>{ this.label }</div> : null;
+        return (
+          <HideableComponent
+            field={field}
+            key={idx}
+            allPreferences={allPreferences}
+          >
+            <Field
+              field={field}
+              key={idx}
+              value={this.preferences[field.key]}
+              onChange={this.onFieldChange.bind(this, field.key)}
+            />
+          </HideableComponent>
+        );
+      })
+      .filter((field) => field);
 
-		const fields = this.fields.map((field, idx) => {
+    return (
+      <div className={`group key-${this.props.groupId}`}>
+        {label}
+        {fields}
+      </div>
+    );
+  }
 
-			const Field = fieldMap[field.type];
-			if (!Field) {
+  get label() {
+    return this.group.label;
+  }
 
-				return;
+  get fields() {
+    return this.group.fields;
+  }
 
-			}
+  get group() {
+    return this.props.group;
+  }
 
-			return <HideableComponent field={ field } key={ idx } allPreferences={ allPreferences } >
-				<Field field={ field }
-					key={ idx }
-					value={ this.preferences[field.key] }
-					onChange={ this.onFieldChange.bind(this, field.key) }
-				/>
-			</HideableComponent>;
+  get preferences() {
+    return this.props.preferences;
+  }
 
-		})
-			.filter(field => field);
+  get allPreferences() {
+    return this.props.allPreferences;
+  }
 
-		return (
-			<div className={`group key-${this.props.groupId}`}>
-				{ label }
-				{ fields }
-			</div>
-		);
-
-	}
-
-	get label() {
-
-		return this.group.label;
-
-	}
-
-	get fields() {
-
-		return this.group.fields;
-
-	}
-
-	get group() {
-
-		return this.props.group;
-
-	}
-
-	get preferences() {
-
-		return this.props.preferences;
-
-	}
-
-	get allPreferences() {
-
-		return this.props.allPreferences;
-
-	}
-
-	get onFieldChange() {
-
-		return this.props.onFieldChange;
-
-	}
-
+  get onFieldChange() {
+    return this.props.onFieldChange;
+  }
 }
 
 Group.propTypes = {
-	preferences: PropTypes.object,
-	group: PropTypes.object,
-	onFieldChange: PropTypes.func,
+  preferences: PropTypes.object,
+  group: PropTypes.object,
+  onFieldChange: PropTypes.func,
 };
 
 export default Group;
