@@ -39,7 +39,7 @@ class Main extends React.Component {
 		const groups = this.form.groups.map((group, idx) => (
 			<HideableComponent field={ group } allPreferences={ preferences }>
 				<Group key={ idx }
-					groupId={section.id}
+					groupId={group.id}
 					group={ group }
 					preferences={ preferences[section.id] }
 					allPreferences={ preferences }

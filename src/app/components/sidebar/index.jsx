@@ -22,13 +22,13 @@ class Sidebar extends React.Component {
 
 			// Check if icon is a custom path (contains .svg or starts with ./ or /)
 			const isCustomIcon = section.icon && (
-				section.icon.includes('.svg') || 
-				section.icon.startsWith('./') || 
-				section.icon.startsWith('/')
+				section.icon.includes('.svg')
+				|| section.icon.startsWith('./')
+				|| section.icon.startsWith('/')
 			);
-			
+
 			const iconPath = isCustomIcon ? section.icon : `svg/${section.icon}.svg`;
-			
+
 			const style = {
 				mask: `url("${iconPath}") no-repeat center / contain`,
 				WebkitMask: `url("${iconPath}") no-repeat center / contain`,

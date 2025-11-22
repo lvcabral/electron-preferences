@@ -1,7 +1,7 @@
 # Files
 .DS_Store
 example/preferences.json
-
+out/
 # Folders
 .cache-loader
 .idea
