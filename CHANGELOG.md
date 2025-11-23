@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.0.0] - 2024-11-23
+## [3.0.0] - 2025-11-23
 
 ### Added
 
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated field rendering with wrapper divs to support custom styling
 - Enhanced group component with flexbox container (`.fields-container`) for responsive layouts
 
-## [2.9.5] - 2024-11-22
+## [2.9.5] - 2025-11-22
 
 ### Changed
 
@@ -40,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed map field not using theme colors by moving styles to global stylesheet
 
-## [2.9.4] - 2024-11-22
+## [2.9.4] - 2025-11-22
 
 ### Added
 
@@ -57,13 +57,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Sections can now be safely inserted anywhere in the array without affecting existing group IDs
   - Maintains backward compatibility with CSS class names
 
-## [2.9.3] - 2024-11-22
+## [2.9.3] - 2025-11-22
 
 ### Fixed
 
 - Fixed theme change not updating the preference window
 
-## [2.9.2] - 2024-11-21
+## [2.9.2] - 2025-11-21
 
 ### Added
 
