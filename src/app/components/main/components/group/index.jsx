@@ -57,12 +57,14 @@ class Group extends React.Component {
             key={idx}
             allPreferences={allPreferences}
           >
-            <Field
-              field={field}
-              key={idx}
-              value={this.preferences[field.key]}
-              onChange={this.onFieldChange.bind(this, field.key)}
-            />
+            <div className="field-wrapper" style={field.style}>
+              <Field
+                field={field}
+                key={idx}
+                value={this.preferences[field.key]}
+                onChange={this.onFieldChange.bind(this, field.key)}
+              />
+            </div>
           </HideableComponent>
         );
       })
@@ -71,7 +73,7 @@ class Group extends React.Component {
     return (
       <div className={`group key-${this.props.groupId}`}>
         {label}
-        {fields}
+        <div className="fields-container">{fields}</div>
       </div>
     );
   }
