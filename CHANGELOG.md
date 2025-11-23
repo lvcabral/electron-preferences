@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2024-11-23
+
+### Added
+
+- Added flexible field layouts with `style` property support
+  - Fields can now specify custom widths using `style: { width: '50%' }`
+  - Side-by-side field layouts automatically enabled via CSS flexbox
+  - Responsive layout with automatic wrapping and 20px gap between fields
+- Created comprehensive documentation structure in `docs/` directory:
+  - `API.md` - Complete API reference with constructor, methods, events
+  - `FIELD_TYPES.md` - All 15 field types with properties and examples
+  - `EXAMPLES.md` - Working examples and common patterns
+  - `ICONS.md` - Icon gallery with all 65 built-in icons
+
+### Changed
+
+- **BREAKING**: Restructured documentation - README.md significantly reduced from 966 to 273 lines
+  - README now serves as concise overview with links to detailed docs
+  - Documentation split into focused files in `docs/` subdirectory
+  - May affect scripts or tools that parse the old README structure
+- Updated field rendering with wrapper divs to support custom styling
+- Enhanced group component with flexbox container (`.fields-container`) for responsive layouts
+
 ## [2.9.5] - 2024-11-22
 
 ### Changed
