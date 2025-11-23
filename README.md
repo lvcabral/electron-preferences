@@ -2,7 +2,9 @@
 
 > A simple, powerful preference management system for Electron applications with a built-in GUI
 
-[![npm version](https://badge.fury.io/js/@lvcabral%2Felectron-preferences.svg)](https://www.npmjs.com/package/@lvcabral/electron-preferences)
+[![NPM Version](https://img.shields.io/npm/v/%40lvcabral%2Felectron-preferences)](https://www.npmjs.com/package/@lvcabral/electron-preferences)
+[![License](https://img.shields.io/github/license/lvcabral/electron-preferences?logo=github)](https://github.com/lvcabral/electron-preferences/blob/master/LICENSE)
+
 
 <img src="misc/demo.png" alt="Electron Preferences Demo" />
 
